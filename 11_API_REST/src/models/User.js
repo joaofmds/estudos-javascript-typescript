@@ -52,4 +52,8 @@ export default class Aluno extends Model {
 
     return this;
   }
+
+  passwordIsValid(password) {
+    return bcryptjs.compare(password, this.password_hash);
+  }
 }
