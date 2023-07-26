@@ -27,8 +27,8 @@ export default class Aluno extends Model {
         type: Sequelize.STRING,
         defaultValue: '',
         unique: {
-          msg: 'E-mail já existe.'
-        }
+          msg: 'E-mail já existe.',
+        },
         validate: {
           isEmail: {
             msg: 'E-mail inválido.',
@@ -59,11 +59,16 @@ export default class Aluno extends Model {
         validate: {
           isFloat: {
             msg: 'Altura preciso ser um número de ponto flutuante.',
+          },
         },
       },
     }, {
       sequelize,
     });
     return this;
+  }
+
+  static associate(models) {
+    this.hasMany(models.Foto, { foreignKey: 'aluno_id' });
   }
 }
